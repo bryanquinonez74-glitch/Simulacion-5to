@@ -1,0 +1,33 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def calcular_chi2():
+    try:
+        a = int(entry_a.get())
+        b = int(entry_b.get())
+        c = int(entry_c.get())
+        d = int(entry_d.get())
+
+        total = a+b+c+d
+        expected = [(a+b)*(a+c)/total, (a+b)*(b+d)/total,
+                    (c+d)*(a+c)/total, (c+d)*(b+d)/total]
+
+        chi2 = sum([(val-exp)**2/exp for val,exp in zip([a,b,c,d], expected)])
+        messagebox.showinfo("Resultado", f"Chi² = {chi2:.3f}")
+    except:
+        messagebox.showerror("Error","Verifica los datos ingresados")
+
+root = tk.Tk()
+root.title("Prueba de Independencia 2x2")
+
+tk.Label(root, text="Celda (1,1)").grid(row=0,column=0)
+entry_a = tk.Entry(root); entry_a.grid(row=0,column=1)
+tk.Label(root, text="Celda (1,2)").grid(row=1,column=0)
+entry_b = tk.Entry(root); entry_b.grid(row=1,column=1)
+tk.Label(root, text="Celda (2,1)").grid(row=2,column=0)
+entry_c = tk.Entry(root); entry_c.grid(row=2,column=1)
+tk.Label(root, text="Celda (2,2)").grid(row=3,column=0)
+entry_d = tk.Entry(root); entry_d.grid(row=3,column=1)
+
+tk.Button(root,text="Calcular Chi²",command=calcular_chi2).grid(row=4,column=0,columnspan=2)
+root.mainloop()
