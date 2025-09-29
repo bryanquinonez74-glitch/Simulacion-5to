@@ -1,0 +1,22 @@
+import tkinter as tk
+import random
+
+def simular_pi():
+    try:
+        n = int(entry_n.get())
+        dentro = sum(1 for _ in range(n) if random.random()**2 + random.random()**2 <= 1)
+        pi = 4 * dentro / n
+        lbl_resultado.config(text=f"Estimación de π = {pi:.5f}")
+    except:
+        lbl_resultado.config(text="Error en los datos")
+
+root = tk.Tk()
+root.title("Monte Carlo - Estimación de Pi")
+
+tk.Label(root,text="Número de puntos:").pack()
+entry_n = tk.Entry(root); entry_n.pack()
+tk.Button(root,text="Simular",command=simular_pi).pack()
+lbl_resultado = tk.Label(root,text="")
+lbl_resultado.pack()
+
+root.mainloop()
