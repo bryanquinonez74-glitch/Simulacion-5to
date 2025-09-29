@@ -1,9 +1,0 @@
-import random 
-import matplotlib.pyplot as plt 
-# Generar lista de números aleatorios entre 0 y 1 
-numeros = [random.random() for _ in range(1000)] # Graficar histograma 
-plt.hist(numeros, bins=20, color="skyblue", edgecolor="black") 
-plt.title("Histograma de números pseudoaleatorios") 
-plt.xlabel("Intervalo") 
-plt.ylabel("Frecuencia") 
-plt.show()
